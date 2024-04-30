@@ -56,20 +56,23 @@ function UserChat({currentUser}:any) {
         })
         console.log(postMessage)
     }
-    useEffect(()=>{
-        if(userMessage && userMessage.length > 0){
-            let chatId = userMessage[0]?.chatId
-            pusherClient.subscribe(chatId)
-        pusherClient.bind("incoming-message",(userMessage:any)=>{
-            console.log(userMessage)
-            setUserMessage((prev:any)=> [...prev,userMessage])
-        })
-        return()=>{
-            pusherClient.unsubscribe(chatId)
-        }
-    }
 
-    },[])
+
+
+    // useEffect(()=>{
+    //     if(userMessage && userMessage.length > 0){
+    //         let chatId = userMessage[0]?.chatId
+    //         pusherClient.subscribe(chatId)
+    //     pusherClient.bind("incoming-message",(userMessage:any)=>{
+    //         console.log(userMessage)
+    //         setUserMessage((prev:any)=> [...prev,userMessage])
+    //     })
+    //     return()=>{
+    //         pusherClient.unsubscribe(chatId)
+    //     }
+    // }
+
+    // },[])
 
     return (
         <div className='border-2 border-blue-600 rounded-2xl'>

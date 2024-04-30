@@ -9,7 +9,7 @@ export async function POST(body){
         const {context,senderId,reciverId,chatId} = await body.json()
         console.log(reciverId)
 
-        pusherServer.trigger(chatId,"incoming-message",context)
+        // pusherServer.trigger(chatId,"incoming-message",context)
         const createMessage = await prisma.message.create({
             data:{
                 context:context,
