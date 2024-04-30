@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { signOut } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import UserChat from "./[id]/page";
@@ -14,12 +14,12 @@ interface UserProps {
   image: string;
 }
 
-function MainPage() {
+function  MainPage() {
   const [getUser, setGetUser] = useState<UserProps[]>([]);
   const [currentUser, setCurrentUser] = useState<string>();
 
   
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const route = useRouter();
   
   useEffect(() => {
@@ -48,7 +48,20 @@ function MainPage() {
     const newUrl = `/components/main/${id}`
     window.history.pushState({path:`/main${e}`},"",newUrl)
   }
+  
+  // setCurrentUser(getUser[1])
 
+  useEffect(()=>{
+    const fetchSession = async()=>{
+      const session = await getSession()
+      console.log(session)
+      if(!session?.user) route.push("/")
+    }
+    fetchSession()
+  },[])
+
+
+  
   return (
     <div className="flex w-full">
       <div className="mt-6 ml-6">
@@ -83,7 +96,7 @@ function MainPage() {
         </div>
       </div>
       <div className="flex justify-center mt-5 w-full">
-        <UserChat currentUser={currentUser}/>
+        {/* <UserChat currentUser={currentUser}/> */}
       </div>
     </div>
   );

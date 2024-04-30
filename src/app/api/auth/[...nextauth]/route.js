@@ -38,13 +38,18 @@ const handler =NextAuth( {
     })
   ],
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, token,user}) {
+      console.log(token)
+      console.log(session)
+      session.accessToken = token.accessToken
       session.user.id = token.sub
       console.log(session)
       return session
-    }
-  },pages:{
-    signIn:"http://localhost:3000/"
+    },
+  },
+  secret:"http://localhost:3000",
+  pages:{
+    signIn:"http://localhost:3000"
 
   }
 })

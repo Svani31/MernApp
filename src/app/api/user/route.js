@@ -25,9 +25,8 @@ export async function GET(){
     try{
         const getAllUser = await prisma.user.findMany({
             include:{
-                sentMessage:true,
-                reciveMessage:true,
-            },
+                chat:true
+            }
         })
         console.log(getAllUser,"this is user")
         return NextResponse.json(getAllUser)
