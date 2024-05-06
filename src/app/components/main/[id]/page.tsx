@@ -30,15 +30,15 @@ function UserChat({currentUser}:any) {
                 body:JSON.stringify({userId:session?.user.id})
             })
             const data = await getData.json()
-            setUserMessage(data.message)
-            console.log(data.message)
+            setUserMessage(data)
+            setContextInput("")
         }
         fetchApi()
        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[currentUser])
 
-
+    // console.log(userMessage)
     const createMessageHandler = async(e:any) =>{
         e.preventDefault()
         const session = await getSession()
@@ -51,31 +51,38 @@ function UserChat({currentUser}:any) {
                 context:contextInput,
                 senderId:session?.user.id,
                 reciverId:currentUser,
-                chatId:userMessage[0].chatId
+                chatId:userMessage.id
             })
         })
         console.log(postMessage)
     }
-    useEffect(()=>{
-        if(userMessage && userMessage.length > 0){
-            let chatId = userMessage[0]?.chatId
-            pusherClient.subscribe(chatId)
-        pusherClient.bind("incoming-message",(userMessage:any)=>{
-            console.log(userMessage)
-            setUserMessage((prev:any)=> [...prev,userMessage])
-        })
-        return()=>{
-            pusherClient.unsubscribe(chatId)
-        }
-    }
 
-    },[])
+    console.log(userMessage)
+
+    useEffect(()=>{
+        if(userMessage){
+            let chatId = userMessage.id
+                pusherClient.subscribe(chatId)
+            pusherClient.bind("incoming-message",(userMessage:any)=>{
+                console.log(userMessage)
+                setUserMessage((prev:any)=> ({
+                    ...prev,
+                    message:[...prev.message,userMessage]
+                }))
+            })
+            return()=>{
+                pusherClient.unsubscribe(chatId)
+            }
+        }
+    
+
+    },[userMessage])
 
     return (
         <div className='border-2 border-blue-600 rounded-2xl'>
             <h1 className=' text-center font-bold text-2xl text-blue-600'>Chat</h1>
         <div style={{height:"80vh",width:"100vh"}}>
-            {userMessage?.map((eachUser:any)=>{
+            {userMessage?.message?.map((eachUser:any)=>{
                 return(
                     <div className='mt-3' key={eachUser.id}>
                         {eachUser.senderId === session?.user.id ? (<div className='flex justify-start mt-2'>
