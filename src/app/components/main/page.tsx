@@ -97,7 +97,7 @@ function  MainPage() {
         </div>
       </div>
       <div className="flex justify-center mt-5 w-full">
-        {/* <UserChat currentUser={currentUser}/> */}
+        <UserChat currentUser={currentUser}/>
       </div>
     </div>
   );
