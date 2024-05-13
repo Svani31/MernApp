@@ -47,7 +47,7 @@ const handler = NextAuth({
       return session;
     },
   },
-  secret: "http://localhost:3000",
+  secret: `${process.env.NEXT_PUBLIC_URL}`,
   pages: {
     signIn: `${process.env.NEXT_PUBLIC_URL}`,
   },
