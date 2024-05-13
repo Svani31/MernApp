@@ -49,7 +49,7 @@ const handler = NextAuth({
   },
   secret: "http://localhost:3000",
   pages: {
-    signIn: "http://localhost:3000",
+    signIn: `${process.env.NEXT_PUBLIC_URL}`,
   },
 });
 
