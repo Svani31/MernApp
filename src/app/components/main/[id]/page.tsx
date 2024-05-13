@@ -22,7 +22,7 @@ function UserChat({currentUser}:any) {
     useEffect(()=>{
         if(currentUser){
         const fetchApi = async () =>{
-            const getData = await fetch(`${process.env.NEXT_PUBLIC_URL}api/chat`,{
+            const getData = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}api/chat`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
