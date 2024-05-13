@@ -1,5 +1,6 @@
 import prisma from "@/app/utils/prismaDb"
 import { NextResponse } from 'next/server'
+import { getSession } from "next-auth/react"
 
 export async function POST(req){
     try{
@@ -21,16 +22,3 @@ export async function POST(req){
 }
 
 
-export async function GET(){
-    try{
-        const getAllUser = await prisma.user.findMany({
-            include:{
-                chat:true
-            }
-        })
-        console.log(getAllUser,"this is user")
-        return NextResponse.json(getAllUser)
-    }catch(error){
-        throw error
-    } 
-}

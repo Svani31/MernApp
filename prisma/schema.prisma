@@ -15,20 +15,22 @@ datasource db {
 
 // Define the User model
 model User {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String @unique
-  password String
-  image    String
-
-  chat Chat[]
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  email          String @unique
+  password       String
+  image          String
+  firstUserChat  Chat[] @relation("firstUser")
+  secondUserChat Chat[] @relation("secondUser")
 }
 
 model Chat {
-  id      String    @id @default(auto()) @map("_id") @db.ObjectId
-  message Message[]
-  userId  String    @db.ObjectId
-  User    User      @relation(fields: [userId], references: [id])
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  message      Message[]
+  firstUserId  String    @db.ObjectId
+  secondUserId String    @db.ObjectId
+  firstUser    User      @relation(name: "firstUser", fields: [firstUserId], references: [id])
+  secondUser   User      @relation(name: "secondUser", fields: [secondUserId], references: [id])
 }
 
 model Message {

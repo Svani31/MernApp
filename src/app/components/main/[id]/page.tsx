@@ -13,7 +13,6 @@ function UserChat({currentUser}:any) {
     const router = useRouter()
 
 
-    // console.log(session?.user.id)
     useEffect(()=>{
         if(!currentUser) router.push("/components/main") 
         
@@ -54,17 +53,14 @@ function UserChat({currentUser}:any) {
                 chatId:userMessage.id
             })
         })
-        console.log(postMessage)
     }
 
-    console.log(userMessage)
 
     useEffect(()=>{
         if(userMessage){
             let chatId = userMessage.id
                 pusherClient.subscribe(chatId)
             pusherClient.bind("incoming-message",(userMessage:any)=>{
-                console.log(userMessage)
                 setUserMessage((prev:any)=> ({
                     ...prev,
                     message:[...prev.message,userMessage]
