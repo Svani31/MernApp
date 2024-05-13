@@ -22,17 +22,17 @@ function  MainPage() {
   
   // const { data: session } = useSession();
   const route = useRouter();
-  
   useEffect(() => {
     const fetchData = async () => {
-      const getUser = await fetch("http://localhost:3000/api/user", {
-        method: "GET",
+      const session = await getSession()
+      const getUser = await fetch("http://localhost:3000/api/eachUser", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body:JSON.stringify({myId:session?.user.id})
       });
       const jsonUser = await getUser.json();
-      console.log(jsonUser);
       setGetUser(jsonUser);
     };
     fetchData();
@@ -79,13 +79,13 @@ function  MainPage() {
                       : "cursor-pointer border-blue-500 rounded-xl border-l-2 border-r-2 border-t-2 flex p-2 gap-3"
                   }
                 >
-                  <Image
+                  {/* <Image
                     className="w-12 h-12 rounded-2xl"
                     src={`${eachUser.image}`}
                     alt="User Image"
                     width={"48"}
                     height={"48"}
-                  />
+                  /> */}
                   <div>
                     <h1>{eachUser.name}</h1>
                     <h1>Last Message</h1>

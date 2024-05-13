@@ -33,8 +33,9 @@ import {NextResponse} from "next/server"
 
 export async function POST(body){
     try{
-        const {userId} = await body.json()
-        console.log(userId)
+        const secondUserId = await req.params.id
+        console.log(secondUserId)
+        const {firstUserId} = await body.json()
         const findChat = await prisma.chat.findUnique({
             where:{
                 userId:userId
