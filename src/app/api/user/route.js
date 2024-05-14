@@ -23,7 +23,7 @@ export async function POST(req){
 
 
 
-export async function get(body){
+export async function GET(){
     try{
         const getAllUser = await prisma.user.findMany({})
         console.log(getAllUser,"this is user")

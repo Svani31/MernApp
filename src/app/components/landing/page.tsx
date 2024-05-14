@@ -54,7 +54,7 @@ function LandingPage() {
           "Content-Type":"application/json"
         }
       })
-      console.log(user.json())
+      console.log(await user.json())
     }
     fetchData()
   },[])
