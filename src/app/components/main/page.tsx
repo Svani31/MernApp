@@ -22,6 +22,7 @@ function  MainPage() {
   
   // const { data: session } = useSession();
   const route = useRouter();
+  
   useEffect(() => {
     const fetchData = async () => {
       const session = await getSession()
