@@ -22,3 +22,13 @@ export async function POST(req){
 }
 
 
+
+export async function get(body){
+    try{
+        const getAllUser = await prisma.user.findMany({})
+        console.log(getAllUser,"this is user")
+        return NextResponse.json(getAllUser)
+    }catch(error){
+        throw error
+    } 
+}

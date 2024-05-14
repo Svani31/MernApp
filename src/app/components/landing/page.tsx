@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { getSession, signIn } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface UserInfoProps {
@@ -44,6 +44,20 @@ function LandingPage() {
     }
     fetchGetSession()
 },[])
+
+
+  useEffect(()=>{
+    const fetchData = async ()=>{
+      const user = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/user`,{
+        method:"GET",
+        headers:{
+          "Content-Type":"application/json"
+        }
+      })
+      console.log(user.json())
+    }
+    fetchData()
+  },[])
 
 
   return (
