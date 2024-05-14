@@ -47,7 +47,7 @@ const handler = NextAuth({
       return session;
     },
   },
-  secret: `${process.env.NEXT_PUBLIC_API_KEY}`,
+  secret: `${process.env.NEXTAUTH_SECRET}`,
   pages: {
     signIn: `${process.env.NEXT_PUBLIC_API_KEY}`,
   },

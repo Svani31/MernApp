@@ -22,7 +22,7 @@ function UserChat({currentUser}:any) {
     useEffect(()=>{
         if(currentUser){
         const fetchApi = async () =>{
-            const getData = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}api/chat`,{
+            const getData = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/chat`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
@@ -42,7 +42,7 @@ function UserChat({currentUser}:any) {
     const createMessageHandler = async(e:any) =>{
         e.preventDefault()
         const session = await getSession()
-        const postMessage = await fetch("http://localhost:3000/api/message",{
+        const postMessage = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/message`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

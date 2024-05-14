@@ -22,11 +22,11 @@ function  MainPage() {
   
   // const { data: session } = useSession();
   const route = useRouter();
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const session = await getSession()
-      const getUser = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}api/eachUser`, {
+      const getUser = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/eachUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
