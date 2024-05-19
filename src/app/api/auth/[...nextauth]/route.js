@@ -23,7 +23,6 @@ const handler = NextAuth({
         // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
-        console.log(credentials);
         const res = await prisma.user.findFirst({
           where: {
             name: credentials.name,
@@ -47,9 +46,9 @@ const handler = NextAuth({
       return session;
     },
   },
-  secret: `${process.env.NEXTAUTH_SECRET}`,
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: `${process.env.NEXT_PUBLIC_API_KEY}`,
+    signIn: process.env.NEXT_PUBLIC_API_KEY,
   },
 });
 

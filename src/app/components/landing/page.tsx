@@ -30,9 +30,10 @@ function LandingPage() {
       password: userInfo.password,
       image: userInfo.image,
     });
-    // if (!signInUser?.ok) {
-    //   alert("this is wrong");
-    // }
+    if (!signInUser?.ok) {
+      alert("this is wrong");
+    }
+    console.log(signInUser,"this is user")
     if (signInUser?.status == 200) route.push("/components/main");
 
   };
