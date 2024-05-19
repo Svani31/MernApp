@@ -48,7 +48,7 @@ function LandingPage() {
 
   useEffect(()=>{
     const fetchData = async ()=>{
-      const user = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/user`,{
+      const user = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}api/user`,{
         method:"GET",
         headers:{
           "Content-Type":"application/json"
