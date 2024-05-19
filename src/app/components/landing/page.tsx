@@ -64,7 +64,7 @@ function LandingPage() {
   return (
     <div className=" flex justify-center items-center mt-16">
       <div className="rounded-xl border-2 p-5 bg-customBackground">
-        <h1 className="flex text-center justify-center">Registration</h1>
+        <h1 className="flex text-center justify-center">Log In</h1>
         <div className="gap-2 flex ">
           <form className="p-5 gap-2 flex flex-col">
             <div className="border-2 rounded-xl p-1 mt-2 bg-white">
