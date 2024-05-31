@@ -31,19 +31,19 @@ import {NextResponse} from "next/server"
 // }
 
 
-export async function POST(body){
-    try{
-        const secondUserId = await req.params.id
-        console.log(secondUserId)
-        const {firstUserId} = await body.json()
-        const findChat = await prisma.chat.findUnique({
-            where:{
-                userId:userId
-            }
-        })
-        console.log(findChat)
-        return NextResponse.json(findChat)
-    }catch(error){
-        throw error
-    }
-}
+// export async function POST(body){
+//     try{
+//         const secondUserId = await req.params.id
+//         console.log(secondUserId)
+//         const {firstUserId} = await body.json()
+//         const findChat = await prisma.chat.findUnique({
+//             where:{
+//                 userId:userId
+//             }
+//         })
+//         console.log(findChat)
+//         return NextResponse.json(findChat)
+//     }catch(error){
+//         throw error
+//     }
+// }

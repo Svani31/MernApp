@@ -11,8 +11,6 @@ function UserChat({currentUser}:any) {
     const [contextInput,setContextInput] = useState<string>()
     const {data:session} = useSession()
     const router = useRouter()
-
-
     useEffect(()=>{
         if(!currentUser) router.push("/components/main") 
         
@@ -30,7 +28,9 @@ function UserChat({currentUser}:any) {
                 body:JSON.stringify({userId:session?.user.id})
             })
             const data = await getData.json()
+            console.log(data.id)
             setUserMessage(data)
+        
             setContextInput("")
         }
         fetchApi()
@@ -54,6 +54,7 @@ function UserChat({currentUser}:any) {
                 chatId:userMessage.id
             })
         })
+        console.log(postMessage,"this is users message")
     }
 
 
@@ -71,8 +72,6 @@ function UserChat({currentUser}:any) {
                 pusherClient.unsubscribe(chatId)
             }
         }
-    
-
     },[userMessage])
 
     return (

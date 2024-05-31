@@ -44,9 +44,22 @@ function  MainPage() {
     route.push("/");
   };
 
-  const currentUserHandler = (e:any) =>{
+  const currentUserHandler = async (e:any) =>{
     setCurrentUser(e)
+    const session = await getSession()
     const id = e
+    const chatHandler = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}api/chat`,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        firstUserId:session?.user.id,
+        secondUserId:id
+      })
+    })
+    const chat = await chatHandler.json()
+    console.log(chat)
     const newUrl = `/components/main/${id}`
     window.history.pushState({path:`/main${e}`},"",newUrl)
   }
